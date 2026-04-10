@@ -25,3 +25,4 @@ jobs:
 
     - name: Build Docker Image
       run: docker build -t devops-task-app .
+      # trigger
