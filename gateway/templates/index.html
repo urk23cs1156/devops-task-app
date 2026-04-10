@@ -1,25 +1,70 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Microservices App</title>
+    <title>Microservices Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 12px;
+            background-color: #007BFF;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 
 <h1>🚀 Microservices Dashboard</h1>
 
-<h2>Users</h2>
-<ul>
-{% for user in users %}
-<li>{{ user.name }}</li>
-{% endfor %}
-</ul>
+<div class="card">
+    <h2>👤 Users</h2>
+    <ul>
+        {% for user in users %}
+            <li>{{ user }}</li>
+        {% endfor %}
+    </ul>
 
-<h2>Tasks</h2>
-<ul>
-{% for task in tasks %}
-<li>{{ task.task }}</li>
-{% endfor %}
-</ul>
+    <a href="http://localhost:3001/users" target="_blank">
+        👉 Open User Service API
+    </a>
+</div>
+
+<div class="card">
+    <h2>📋 Tasks</h2>
+    <ul>
+        {% for task in tasks %}
+            <li>{{ task }}</li>
+        {% endfor %}
+    </ul>
+
+    <a href="http://localhost:3002/tasks" target="_blank">
+        👉 Open Task Service API
+    </a>
+</div>
 
 </body>
 </html>
