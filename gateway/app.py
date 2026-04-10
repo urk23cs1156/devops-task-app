@@ -8,7 +8,6 @@ app = Flask(__name__)
 def home():
     users = requests.get(services["user"] + "/users").json()
     tasks = requests.get(services["task"] + "/tasks").json()
-
     return render_template("index.html", users=users, tasks=tasks)
 
 if __name__ == "__main__":
