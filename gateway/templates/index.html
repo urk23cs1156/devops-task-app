@@ -2,44 +2,124 @@
 <html>
 <head>
     <title>Microservices Dashboard</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f6f8;
+            margin: 0;
+            padding: 0;
+        }
+
+        .navbar {
+            background-color: #2c3e50;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            font-size: 20px;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 25px;
+            border-radius: 10px;
+            box-shadow: 0px 2px 8px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        input {
+            padding: 8px;
+            width: 70%;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 8px 15px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 10px;
+            color: #777;
+        }
+    </style>
 </head>
+
 <body>
 
-<h1>🚀 Microservices Dashboard</h1>
+<div class="navbar">
+    🚀 DevOps Microservices Dashboard
+</div>
 
-<!-- USERS -->
-<h2>Users</h2>
-<ul>
-  {% for user in users %}
-    <li>{{ user.name }}</li>
-  {% endfor %}
-</ul>
+<div class="container">
 
-<!-- ADD USER -->
-<form action="http://localhost:3001/users" method="post">
-    <input type="text" name="name" placeholder="Enter name" required>
-    <button type="submit">Add User</button>
-</form>
+    <div class="card">
+        <h2>👤 Users</h2>
 
-<a href="http://localhost:3001/users" target="_blank">👉 Open User API</a>
+        <ul>
+            {% for user in users %}
+                <li>{{ user.name }}</li>
+            {% endfor %}
+        </ul>
 
-<hr>
+        <form action="/add-user" method="post">
+            <input type="text" name="name" placeholder="Enter name" required>
+            <button type="submit">Add User</button>
+        </form>
+    </div>
 
-<!-- TASKS -->
-<h2>Tasks</h2>
-<ul>
-  {% for task in tasks %}
-    <li>{{ task.task }}</li>
-  {% endfor %}
-</ul>
+    <div class="card">
+        <h2>📋 Tasks</h2>
 
-<!-- ADD TASK -->
-<form action="http://localhost:3002/tasks" method="post">
-    <input type="text" name="task" placeholder="Enter task" required>
-    <button type="submit">Add Task</button>
-</form>
+        <ul>
+            {% for task in tasks %}
+                <li>{{ task.task }}</li>
+            {% endfor %}
+        </ul>
 
-<a href="http://localhost:3002/tasks" target="_blank">👉 Open Task API</a>
+        <form action="/add-task" method="post">
+            <input type="text" name="task" placeholder="Enter task" required>
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+
+</div>
+
+<div class="footer">
+    DevOps Project • Docker • Kubernetes • Terraform • CI/CD
+</div>
 
 </body>
 </html>

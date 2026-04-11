@@ -23,8 +23,17 @@ jobs:
         pip install -r user-service/requirements.txt
         pip install -r task-service/requirements.txt
 
+    - name: Login to Docker Hub
+      run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
     - name: Build Docker Images
       run: |
-        docker build -t gateway ./gateway
-        docker build -t user-service ./user-service
-        docker build -t task-service ./task-service
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/gateway ./gateway
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/user-service ./user-service
+        docker build -t ${{ secrets.DOCKER_USERNAME }}/task-service ./task-service
+
+    - name: Push Docker Images
+      run: |
+        docker push ${{ secrets.DOCKER_USERNAME }}/gateway
+        docker push ${{ secrets.DOCKER_USERNAME }}/user-service
+        docker push ${{ secrets.DOCKER_USERNAME }}/task-service

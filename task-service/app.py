@@ -13,8 +13,20 @@ def get_tasks():
 
 @app.route("/tasks", methods=["POST"])
 def add_task():
-    new_task = request.json
+    data = request.get_json(silent=True)
+
+    if data and "task" in data:
+        task = data["task"]
+    else:
+        task = request.form.get("task")
+
+    new_task = {
+        "id": len(tasks) + 1,
+        "task": task
+    }
+
     tasks.append(new_task)
+
     return jsonify({"message": "Task added", "data": new_task})
 
 if __name__ == "__main__":
